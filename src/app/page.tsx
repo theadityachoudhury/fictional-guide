@@ -1,10 +1,11 @@
 import Image from "next/image";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <main className="text-center text-xl">
-      <h1>Home</h1>
-      <p>Home page</p>
-    </main>
+    <div>
+      <h1 className="text-4xl text-center">Welcome to the Newsletter App</h1>
+      <div className="flex justify-center">
+      </div>
+    </div>
   );
 }
