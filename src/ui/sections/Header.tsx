@@ -31,10 +31,10 @@ export default function Header() {
         setShowMobileMenu(!showMobileMenu);
     }
     return (
-        <div className="fixed top-0 w-full backdrop-blur-md">
+        <div className="">
             <div className="p-3">
                 {/* Only for medium and large devices */}
-                <header className=" hidden sm:flex text-lg justify-around rounded-lg p-3">
+                <header className="fixed top-0 w-full backdrop-blur-md hidden sm:flex text-lg justify-around rounded-lg p-3">
 
 
                     <div className="hidden lg:flex space-x-28">
@@ -61,7 +61,7 @@ export default function Header() {
                         })}
 
                         {NavLinks.map((link, index) => {
-                            if (link.title === "Account" && link.logged) {
+                            if (link.title === "Account" && !link.logged) {
                                 return (
                                     <div key={index} className="relative pb-1" onMouseEnter={toggleSubMenu}
                                         onMouseLeave={toggleSubMenu}>
@@ -74,7 +74,7 @@ export default function Header() {
                                             {link.title}
                                         </Button>
                                         {showSubMenu && (
-                                            <div className="absolute top-full left-0 w-40 border border-gray-100 dark:border-gray-800 rounded-lg shadow-lg backdrop-blur-sm">
+                                            <div className="absolute top-full left-0 w-40 border border-gray-100 dark:border-gray-800 rounded-lg shadow-lg dark:bg-black bg-white">
                                                 {link?.sub?.map((subLink, subIndex) => {
                                                     if (subLink.title === "Logout") {
                                                         return <Link
@@ -98,7 +98,9 @@ export default function Header() {
                             }
                         })}
                     </div>
+
                 </header>
+
 
                 {/* Only for small devices */}
                 <header className="flex sm:hidden" role="dialog" aria-modal="true">
@@ -132,7 +134,7 @@ export default function Header() {
                 </header>
 
             </div>
-            <hr />
+            <hr className="block sm:hidden"/>
         </div>
     );
 }
