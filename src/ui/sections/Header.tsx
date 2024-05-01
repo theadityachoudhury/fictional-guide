@@ -31,107 +31,108 @@ export default function Header() {
         setShowMobileMenu(!showMobileMenu);
     }
     return (
-        <div className="shadow-md dark:shadow-slate-950 shadow-slate-200 mb-5">
-            {/* Only for medium and large devices */}
-            <header className=" hidden sm:flex text-lg justify-around rounded-lg p-3">
+        <div className="fixed top-0 w-full backdrop-blur-md">
+            <div className="p-3">
+                {/* Only for medium and large devices */}
+                <header className=" hidden sm:flex text-lg justify-around rounded-lg p-3">
 
 
-                <div className="hidden lg:flex">
-                    <Link href="/" className="p-2 lg:text-lg hover:text-blue-500">Newsletter App</Link>
-                </div>
-
-                <div className="hidden sm:flex space-x-4">
-                    <div className="flex space-x-4 p-2">
-                        {NavLinks.map((link, index) => {
-                            if (link.type === "link")
-                                if (link.title === "Account" || link.title === "Login") return null;
-                                else return <Link href={link.path} key={index} className={`hover:text-blue-400 ${pathname == link.path ? "text-blue-400" : ""}`}>{link.title}</Link>
-                        })}
-                        {/* <Link href="/" className={`hover:text-blue-400` && pathname=="/"?"text-blue-400":""}>Home</Link>
-                    <Link href="/about" className={`hover:text-blue-400` && pathname=="/about"?"text-blue-400":""}>About</Link>
-                    <Link href="/contact" className={`hover:text-blue-400` && pathname=="/contact"?"text-blue-400":""}>Contact</Link> */}
-
-
+                    <div className="hidden lg:flex space-x-28">
+                        <Link href="/" className="p-2 lg:text-lg hover:text-blue-500">Newsletter App</Link>
                     </div>
-                    <ThemeSwitcher />
-                    {/* <Button variant="primary">Sign In</Button> */}
-                    {NavLinks.map((link, index) => {
-                        if (link.type == "button")
-                            return <Button key={index} onClick={link.onclick} variant="login">{link.title}</Button>
+                    {/* Nav Links */}
+                    <div className="hidden sm:flex space-x-4">
+                        <div className="flex space-x-7 p-2 font-light">
+                            {NavLinks.map((link, index) => {
+                                if (link.type === "link")
+                                    if (link.title === "Account" || link.title === "Login") return null;
+                                    else return <Link href={link.path} key={index} className={`hover:text-indigo-500 ${pathname == link.path ? "text-indigo-500 font-normal" : ""}`}>{link.title}</Link>
+                            })}
+                        </div>
+                    </div>
 
-
-                    })}
-
-                    {NavLinks.map((link, index) => {
-                        if (link.title === "Account" && link.logged) {
-                            return (
-                                <div key={index} className="relative pb-1" onMouseEnter={toggleSubMenu}
-                                    onMouseLeave={toggleSubMenu}>
-                                    <Button
-                                        variant="primary"
-                                        onClick={() => {
-                                            window.location.href = link.path;
-                                        }}
-                                    >
-                                        {link.title}
-                                    </Button>
-                                    {showSubMenu && (
-                                        <div className="absolute top-full left-0 w-40 border border-gray-100 dark:border-gray-800 rounded-lg shadow-lg backdrop-blur-sm">
-                                            {link?.sub?.map((subLink, subIndex) => {
-                                                if (subLink.title === "Logout") {
-                                                    return <Link
-                                                        key={subIndex}
-                                                        href={subLink.path}
-                                                        className="block px-2 py-1 bg-red-950 hover:bg-red-700 text-red-100 rounded-md mx-2 mb-2"
-                                                    >
-                                                        {subLink.title}
-                                                    </Link>
-                                                } else {
-                                                    return <Link href={subLink.path} key={subIndex} className="">
-                                                        <p className="block px-4 py-2">{subLink.title}</p>
-                                                    </Link>
-                                                }
-
-                                            })}
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        }
-                    })}
-                </div>
-            </header>
-
-            {/* Only for small devices */}
-            <header className="flex sm:hidden" role="dialog" aria-modal="true">
-                <div className="flex justify-between items-center w-full p-3">
-                    <Link href="/" className="p-2 text-2xl   hover:text-blue-500">Newsletter App</Link>
-                    <div className="flex gap-3">
+                    <div className="hidden sm:flex space-x-4">
                         <ThemeSwitcher />
-                        {!showMobileMenu ? <TfiAlignRight className="text-4xl" onClick={toggleMobileMenu} /> : <AiOutlineClose className="text-4xl" onClick={toggleMobileMenu} />}
+                        {NavLinks.map((link, index) => {
+                            if (link.type == "button")
+                                return <Button key={index} onClick={link.onclick} variant="login">{link.title}</Button>
+
+
+                        })}
+
+                        {NavLinks.map((link, index) => {
+                            if (link.title === "Account" && link.logged) {
+                                return (
+                                    <div key={index} className="relative pb-1" onMouseEnter={toggleSubMenu}
+                                        onMouseLeave={toggleSubMenu}>
+                                        <Button
+                                            variant="primary"
+                                            onClick={() => {
+                                                window.location.href = link.path;
+                                            }}
+                                        >
+                                            {link.title}
+                                        </Button>
+                                        {showSubMenu && (
+                                            <div className="absolute top-full left-0 w-40 border border-gray-100 dark:border-gray-800 rounded-lg shadow-lg backdrop-blur-sm">
+                                                {link?.sub?.map((subLink, subIndex) => {
+                                                    if (subLink.title === "Logout") {
+                                                        return <Link
+                                                            key={subIndex}
+                                                            href={subLink.path}
+                                                            className="block px-2 py-1 bg-red-950 hover:bg-red-700 text-red-100 rounded-md mx-2 mb-2"
+                                                        >
+                                                            {subLink.title}
+                                                        </Link>
+                                                    } else {
+                                                        return <Link href={subLink.path} key={subIndex} className="">
+                                                            <p className="block px-4 py-2">{subLink.title}</p>
+                                                        </Link>
+                                                    }
+
+                                                })}
+                                            </div>
+                                        )}
+                                    </div>
+                                );
+                            }
+                        })}
                     </div>
-                    {showMobileMenu && (
-                        <div className="fixed inset-y-20 right-0 z-50 w-full h-full bg-opacity-10 backdrop-blur-md overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 rounded-md">
-                            <div className="grid text-xl text-center space-y-4 mt-16">
-                                {/* Dynamically showing links from NavLinks */}
+                </header>
 
-                                {NavLinks.map((link, index) => {
-                                    if (link.type === "link")
-                                        if (link.title === "Account" || link.title === "Login") return null;
-                                        else return <Link href={link.path} key={index} onClick={() => { toggleMobileMenu() }} className={`hover:text-blue-400 ${pathname == link.path ? "text-blue-400" : ""}`}>{link.title}</Link>
-                                })}
+                {/* Only for small devices */}
+                <header className="flex sm:hidden" role="dialog" aria-modal="true">
+                    <div className="flex justify-between items-center w-full p-3">
+                        <Link href="/" className="p-2 text-2xl   hover:text-blue-500">Newsletter App</Link>
+                        <div className="flex gap-3">
+                            <ThemeSwitcher />
+                            {!showMobileMenu ? <TfiAlignRight className="text-4xl" onClick={toggleMobileMenu} /> : <AiOutlineClose className="text-4xl" onClick={toggleMobileMenu} />}
+                        </div>
+                        {showMobileMenu && (
+                            <div className="fixed inset-y-20 right-0 z-50 w-full h-full bg-opacity-10 backdrop-blur-md overflow-y-auto px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10 rounded-md">
+                                <div className="grid text-xl text-center space-y-4 mt-16">
+                                    {/* Dynamically showing links from NavLinks */}
 
-                                {NavLinks.map((link, index) => {
-                                    if (link.type == "button")
-                                        return <Button key={index} onClick={link.onclick} variant="login">{link.title}</Button>
+                                    {NavLinks.map((link, index) => {
+                                        if (link.type === "link")
+                                            if (link.title === "Account" || link.title === "Login") return null;
+                                            else return <Link href={link.path} key={index} onClick={() => { toggleMobileMenu() }} className={`hover:text-blue-400 ${pathname == link.path ? "text-blue-400" : ""}`}>{link.title}</Link>
+                                    })}
+
+                                    {NavLinks.map((link, index) => {
+                                        if (link.type == "button")
+                                            return <Button key={index} onClick={link.onclick} variant="login">{link.title}</Button>
 
 
-                                })}
-                            </div>
-                        </div>)}
-                </div>
+                                    })}
+                                </div>
+                            </div>)}
+                    </div>
 
-            </header>
+                </header>
+
+            </div>
+            <hr />
         </div>
     );
 }
