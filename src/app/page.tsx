@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function HomePage() {
   return (
-    <div className="sm:m-16 mt-5 m-1">
+    <div className="m-1">
       <section id="top" className="text-center space-y-10">
         <div className="text-4xl md:text-5xl lg:text-6xl font-semibold space-y-3">
           <p className="">A powerfully simple email</p>

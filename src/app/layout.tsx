@@ -20,7 +20,7 @@ export default function RootLayout({
       <body className={`${poppins.className} bg-white text-black dark:text-white dark:bg-black`}>
         <ThemeProvider attribute="class">
           <Header />
-          <div className="pt-36 sm:pt-16">
+          <div className="pt-36 sm:pt-32">
             {children}
           </div>
 
