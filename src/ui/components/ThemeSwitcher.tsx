@@ -12,7 +12,7 @@ export default function ThemeSwitcher() {
     useEffect(() => {
         setMounted(true)
         setTheme(localStorage.getItem('theme') || 'light');
-    }, []);
+    });
 
     if (!mounted) return null;
 

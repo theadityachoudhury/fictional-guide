@@ -14,7 +14,7 @@ export default function HomePage() {
         </div>
         <div className="space-y-2">
           <Button className="bg-indigo-500 dark:bg-blue-50 dark:text-blue-950 dark:hover:bg-blue-500 font-normal md:text-2xl lg:text-3xl">CREATE YOUR FIRST EMAIL</Button>
-          <p className="font-light">(It's free!! No credit card required.)</p>
+          <p className="font-light">{"(It's free!! No credit card required.)"}</p>
         </div>
       </section>
       <section className="flex justify-center items-center mt-16">
